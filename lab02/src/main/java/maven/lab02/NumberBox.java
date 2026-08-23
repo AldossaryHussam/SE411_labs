@@ -17,6 +17,7 @@ public class NumberBox<T extends Number> {
 	}
 
 	// i believe the implementation can be better -23/8/2026-
+	// that implementation defeats the goal of genirics
 	public T add(NumberBox<T> other) {
 		if (this.item == null || other == null || other.getItem() == null) {
 			throw new IllegalArgumentException("Values cannot be null.");
