@@ -33,7 +33,7 @@ public class App {
 		Double sum = 0.0;
 		for (Number item : numList) {
 			if (item != null) {
-				sum += item.doubleValue(); // Fixed: Changed =+ to +=
+				sum += item.doubleValue();
 			}
 		}
 		return sum;
