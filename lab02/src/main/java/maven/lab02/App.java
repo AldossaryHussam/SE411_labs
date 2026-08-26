@@ -1,5 +1,7 @@
 package maven.lab02;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -18,6 +20,23 @@ public class App {
 		System.out.println(firstNum.add(secondNum.getItem()));
 		System.out.println(thirdNum.add(fourthNum.getItem()));
 
+	}
+
+	// implementation ex4
+	public static void PrintList(List<?> mylist) {
+		for (Object item : mylist) {
+			System.out.println(item);
+		}
+	}
+
+	public static Number calculateSum(List<? extends Number> numList) {
+		Double sum = 0.0;
+		for (Number item : numList) {
+			if (item != null) {
+				sum += item.doubleValue(); // Fixed: Changed =+ to +=
+			}
+		}
+		return sum;
 	}
 
 }
