@@ -1,3 +1,5 @@
+package maven.lab02;
+
 import java.util.ArrayList;
 import java.util.List;
 
