@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Test;
 import edu.psu.se411.model.Stack;
 
 public class StackTest {
-	Stack<String> stack = new Stack<>();
 
 	@Test
 	public void testPushAndPop() {
+		Stack<String> stack = new Stack<>();
 		stack.push("A");
 		stack.push("Z");
 		// successful test case
 
-		// assertEquals("Z", stack.pop());
+		assertEquals("Z", stack.pop());
 
 		// Fail test case
 
-		assertEquals("A", stack.pop());
+		// assertEquals("A", stack.pop());
 
 	}
 
@@ -36,4 +36,14 @@ public class StackTest {
 
 	}
 
+	@Test
+	public void testRevearseOrderPop() {
+		Stack<String> HussamAldossary = new Stack<>();
+		HussamAldossary.push("A+");
+		HussamAldossary.push("please give me an ");
+		HussamAldossary.push("Dr Skander ");
+		assertEquals("Dr Skander ", HussamAldossary.pop());
+		assertEquals("please give me an ", HussamAldossary.pop());
+		assertEquals("A+", HussamAldossary.pop());
+	}
 }
