@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,5 +46,75 @@ public class StackTest {
 		assertEquals("Dr Skander ", HussamAldossary.pop());
 		assertEquals("please give me an ", HussamAldossary.pop());
 		assertEquals("A+", HussamAldossary.pop());
+	}
+
+	@Test
+	public void defaultConstructor_createsEmptyStackAndPopThrowsExpectedException() {
+		Stack<String> stack = new Stack<>();
+
+		NoSuchElementException thrown = assertThrows(NoSuchElementException.class, stack::pop);
+
+		assertEquals("Stack is empty, can’t pop", thrown.getMessage());
+	}
+
+	@Test
+	public void capacityConstructor_withPositiveCapacityBehavesNormally() {
+		Stack<Integer> stack = new Stack<>(1);
+
+		stack.push(42);
+
+		assertEquals(42, stack.pop());
+	}
+
+	@Test
+	public void capacityConstructor_withZeroUsesDefaultInternalCapacityAndStillWorks() {
+		Stack<String> stack = new Stack<>(0);
+
+		stack.push("x");
+
+		assertEquals("x", stack.pop());
+	}
+
+	@Test
+	public void capacityConstructor_withNegativeUsesDefaultInternalCapacityAndStillWorks() {
+		Stack<String> stack = new Stack<>(-5);
+
+		stack.push("y");
+
+		assertEquals("y", stack.pop());
+	}
+
+	@Test
+	public void pushAndPop_followLifoOrderAcrossMultipleCalls() {
+		Stack<String> stack = new Stack<>();
+
+		stack.push("A");
+		stack.push("B");
+		stack.push("C");
+
+		assertEquals("C", stack.pop());
+		assertEquals("B", stack.pop());
+		assertEquals("A", stack.pop());
+	}
+
+	@Test
+	public void push_acceptsNullAndPopReturnsNull() {
+		Stack<String> stack = new Stack<>();
+
+		stack.push(null);
+
+		assertNull(stack.pop());
+	}
+
+	@Test
+	public void popAfterRemovingAllElements_throwsExpectedExceptionAgain() {
+		Stack<String> stack = new Stack<>();
+
+		stack.push("only");
+		assertEquals("only", stack.pop());
+
+		NoSuchElementException thrown = assertThrows(NoSuchElementException.class, stack::pop);
+
+		assertEquals("Stack is empty, can’t pop", thrown.getMessage());
 	}
 }
