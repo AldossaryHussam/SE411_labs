@@ -30,7 +30,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.5.0</version>
 				<configuration>
-					<mainClass>edu.psu.se411.App</mainClass>
+					<mainClass>maven.lab05.App</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
