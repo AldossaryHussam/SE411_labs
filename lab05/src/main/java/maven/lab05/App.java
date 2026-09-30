@@ -35,7 +35,7 @@ public class App {
 		Users hussamAldossay = new Users("Hussam Aldossay", drSkanderbank);
 		drSkanderbank.addUser(hussamAldossay);
 		hussamAldossay.addToWallet(100.0);
-		hussamAldossay.transferToBank(50.0);
+
 		// hussamAldossay.transferFromBank(3000.0);//error
 	}
 

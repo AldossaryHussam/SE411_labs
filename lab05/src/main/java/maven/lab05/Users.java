@@ -1,7 +1,5 @@
 package maven.lab05;
 
-import edu.psu.se411.exceptions.InsufficientFundsException;
-
 public class Users {
 	private final int id = hashCode();
 	private String name;
@@ -14,6 +12,7 @@ public class Users {
 
 		this.name = name;
 		this.bank = bank;
+		bank.addUser(this);
 
 	}
 
@@ -45,28 +44,16 @@ public class Users {
 		this.wallet -= amount;
 	}
 
+	public void setWallet(double wallet) {
+		this.wallet = wallet;
+	}
+
+	public void setBankBalance(double bankBalance) {
+		this.bankBalance = bankBalance;
+	}
+
 	public double getBankBalance() {
 		return bankBalance;
-	}
-
-	public void transferToBank(double amount) throws InsufficientFundsException {
-		if (amount <= wallet) {
-			wallet -= amount;
-			bankBalance += amount;
-		} else {
-			System.out.println("Insufficient funds in wallet.");
-			throw new InsufficientFundsException("Insufficient funds in wallet for the transaction.");
-		}
-	}
-
-	public void transferFromBank(double amount) throws InsufficientFundsException {
-		if (amount <= bankBalance) {
-			bankBalance -= amount;
-			wallet += amount;
-		} else {
-			System.out.println("Insufficient funds in bank.");
-			throw new InsufficientFundsException("Insufficient funds in bank for the transaction.");
-		}
 	}
 
 	@Override
