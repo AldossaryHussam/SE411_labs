@@ -11,19 +11,22 @@ public class App {
 	static Logger logger = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args) {
-		logger.info("Starting WalletAccount application...");
+		logger.info("Application is starting...");
+
 		WalletAccount account = new WalletAccount(1000);
 		try {
 			account.withdraw(1500);
 		} catch (InsufficientFundsException e) {
-			System.out.println("Exception caught: " + e.getMessage());
+			logger.error("Withdrawal failed: {}", e.getMessage(), e);
 		}
 
 		try {
 			account.deposit(-100);
 		} catch (IllegalArgumentException e) {
-			System.out.println("Exception caught: " + e.getMessage());
+			logger.error("Deposit failed: {}", e.getMessage(), e);
 		}
+
+		logger.info("Application is ending.");
 	}
 
 }
