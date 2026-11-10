@@ -6,24 +6,24 @@ import Expetions.InvalidArgumentException;
 import Expetions.MissingInformationException;
 
 public class TrainBooking extends booking {
-	private boolean isStandard;
+	private SeatClass seatClass;
 	private Integer distanceKm;
 
 	public TrainBooking(String bookingID, String customerName, Date travelDate, String destinationCity,
-			Boolean isStandard) throws MissingInformationException {
+			SeatClass seatClass) throws MissingInformationException {
 		super(bookingID, customerName, travelDate, destinationCity);
-		setIsStandard(isStandard);
+		setSeatClass(seatClass);
 	}
 
-	public boolean isStandard() {
-		return isStandard;
+	public SeatClass getSeatClass() {
+		return seatClass;
 	}
 
-	public void setIsStandard(Boolean isStandard) throws MissingInformationException {
-		if (isStandard == null) {
+	public void setSeatClass(SeatClass seatClass) throws MissingInformationException {
+		if (seatClass == null) {
 			throw new MissingInformationException("Seat class is required for a train booking.");
 		}
-		this.isStandard = isStandard;
+		this.seatClass = seatClass;
 	}
 
 	public Integer getDistanceKm() {
@@ -43,8 +43,10 @@ public class TrainBooking extends booking {
 
 	@Override
 	public double computeTotalPrice() throws MissingInformationException, InvalidArgumentException {
-
-		double rate = isStandard ? GlobalConfiguration.TRAIN_STANDARD_RATE : GlobalConfiguration.TRAIN_FIRST_CLASS_RATE;
+		if (distanceKm == null) {
+			throw new MissingInformationException("Train distance is required for a train booking.");
+		}
+		double rate = seatClass == SeatClass.STANDARD ? GlobalConfiguration.TRAIN_STANDARD_RATE : GlobalConfiguration.TRAIN_FIRST_CLASS_RATE;
 		return distanceKm * rate;
 	}
 }
