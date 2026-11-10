@@ -5,14 +5,14 @@ import Expetions.MissingInformationException;
 import java.util.Date;
 
 public class FlightBooking extends booking{
-	private final double  baseTicketPrice=600.0; //SAR
+	private final double baseTicketPrice;
 	private Double luggageWeight;
 
 	
 
-	public FlightBooking(String bookingID, String customerName, Date travelDate, String destinationCity, Double luggageWeight) throws MissingInformationException, InvalidArgumentException {
+	public FlightBooking(String bookingID, String customerName, Date travelDate, String destinationCity, double baseTicketPrice) {
 		super(bookingID, customerName, travelDate, destinationCity);
-		setLuggageWeight(luggageWeight);
+		this.baseTicketPrice = baseTicketPrice;
 	}
 
 	public Double getLuggageWeight() {
@@ -34,8 +34,10 @@ public class FlightBooking extends booking{
 	}
 
 	@Override
-	public double computeTotalPrice() {
-		// TODO Auto-generated method stub
+	public double computeTotalPrice() throws MissingInformationException {
+		if (luggageWeight == null) {
+			throw new MissingInformationException("Luggage weight is required for a flight booking.");
+		}
 		double totalPrice = baseTicketPrice+(GlobalConfiguration.EXTRA_LUGGAGE_RATE * luggageWeight);
 		return totalPrice;
 	}
