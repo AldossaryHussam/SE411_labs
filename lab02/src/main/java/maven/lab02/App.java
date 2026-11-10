@@ -23,13 +23,13 @@ public class App {
 	}
 
 	// implementation ex4
-	public static void PrintList(List<?> mylist) {
+	public static void printList(List<?> mylist) {
 		for (Object item : mylist) {
 			System.out.println(item);
 		}
 	}
 
-	public static Number calculateSum(List<? extends Number> numList) {
+	public static Number sumNumbers(List<? extends Number> numList) {
 		Double sum = 0.0;
 		for (Number item : numList) {
 			if (item != null) {

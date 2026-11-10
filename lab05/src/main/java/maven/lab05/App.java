@@ -33,10 +33,17 @@ public class App {
 
 		Bank drSkanderbank = new Bank(50);
 		Users hussamAldossay = new Users("Hussam Aldossay", drSkanderbank);
-		drSkanderbank.addUser(hussamAldossay);
 		hussamAldossay.addToWallet(100.0);
 
 		// hussamAldossay.transferFromBank(3000.0);//error
+
+		try {
+			Bank.transferToBank(drSkanderbank, hussamAldossay, 40.0);
+			System.out.println("After withdrawing 40.0: " + hussamAldossay);
+			Bank.transferToBank(drSkanderbank, hussamAldossay, 3000.0);
+		} catch (InsufficientFundsException e) {
+			System.out.println("Withdrawal failed: " + e.getMessage());
+		}
 	}
 
 	public static void validateAge(int age) throws InvalidAgeException {

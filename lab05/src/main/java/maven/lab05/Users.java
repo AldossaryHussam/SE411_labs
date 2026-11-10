@@ -3,7 +3,7 @@ package maven.lab05;
 public class Users {
 	private final int id = hashCode();
 	private String name;
-	private double wallet = 0.0;
+	private final Wallet wallet = new Wallet();
 	private double bankBalance = 0.0;
 	private final Bank bank;
 
@@ -33,19 +33,19 @@ public class Users {
 	}
 
 	public double getWallet() {
-		return wallet;
+		return wallet.getBalance();
 	}
 
 	public void addToWallet(double amount) {
-		this.wallet += amount;
+		wallet.deposit(amount);
 	}
 
 	public void deductFromWallet(double amount) {
-		this.wallet -= amount;
+		wallet.setBalance(wallet.getBalance() - amount);
 	}
 
 	public void setWallet(double wallet) {
-		this.wallet = wallet;
+		this.wallet.setBalance(wallet);
 	}
 
 	public void setBankBalance(double bankBalance) {
@@ -58,7 +58,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", name=" + name + ", wallet=" + wallet + ", bankBalance=" + bankBalance + "]";
+		return "Users [id=" + id + ", name=" + name + ", wallet=" + wallet.getBalance() + ", bankBalance=" + bankBalance + "]";
 	}
 
 }
