@@ -28,6 +28,10 @@ public class App {
 				e.printStackTrace();
 			}
 		}
+		Sensor tempCopy = temp.clone();
+		tempCopy.register(dashboard);
+		tempCopy.setReading(99.0);
+		temp.setReading(25.0);
 		logger.info("Application is ending...");
 	}
 }
