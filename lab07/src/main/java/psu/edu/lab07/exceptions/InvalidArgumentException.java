@@ -1,4 +1,4 @@
-package Expetions;
+package psu.edu.lab07.exceptions;
 
 public class InvalidArgumentException extends Exception {
 	public InvalidArgumentException(String message) {

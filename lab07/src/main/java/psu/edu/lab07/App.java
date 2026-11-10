@@ -7,8 +7,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import Expetions.InvalidArgumentException;
-import Expetions.MissingInformationException;
+import psu.edu.lab07.exceptions.InvalidArgumentException;
+import psu.edu.lab07.exceptions.MissingInformationException;
 
 public class App {
     static Logger logger = LoggerFactory.getLogger(App.class);

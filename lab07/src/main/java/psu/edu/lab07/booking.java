@@ -1,8 +1,9 @@
 package psu.edu.lab07;
 
-import Expetions.InvalidArgumentException;
-import Expetions.MissingInformationException;
 import java.util.Date;
+
+import psu.edu.lab07.exceptions.InvalidArgumentException;
+import psu.edu.lab07.exceptions.MissingInformationException;
 
 public abstract class booking {
 	private String bookingID;

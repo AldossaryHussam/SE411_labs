@@ -2,8 +2,8 @@ package psu.edu.lab07;
 
 import java.util.Date;
 
-import Expetions.InvalidArgumentException;
-import Expetions.MissingInformationException;
+import psu.edu.lab07.exceptions.InvalidArgumentException;
+import psu.edu.lab07.exceptions.MissingInformationException;
 
 public class TrainBooking extends booking {
 	private SeatClass seatClass;
