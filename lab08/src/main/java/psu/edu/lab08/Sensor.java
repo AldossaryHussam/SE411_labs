@@ -43,4 +43,15 @@ public class Sensor implements Subject, Cloneable {
 			o.update(this);
 		}
 	}
+
+	@Override
+	public Sensor clone() {
+		try {
+			Sensor copy = (Sensor) super.clone();
+			copy.observers = new ArrayList<Observer>();
+			return copy;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError(e);
+		}
+	}
 }
