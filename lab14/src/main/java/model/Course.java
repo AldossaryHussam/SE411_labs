@@ -1,0 +1,6 @@
+package model;
+
+import org.springframework.data.annotation.Id;
+
+public record Course(@Id Long id, String code, String name, String description, Integer credits) {
+}
