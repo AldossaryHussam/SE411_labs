@@ -30,10 +30,19 @@ public class Transaction implements Runnable {
 	
 	public void execute() throws InsufficientBalanceException {
 		if(sender == receiver) throw new IllegalArgumentException("Cannot make a transaction where the sender and the receiver are the same account");
-		if(sender.getBalance() < amount) throw new InsufficientBalanceException(sender.getId());
-		
-		sender.retrieveFromBalance(amount);
-		receiver.addToBalance(amount);
+		sender.getLock().lock();
+		try {
+			receiver.getLock().lock();
+			try {
+				if (sender.getBalance() < amount) throw new InsufficientBalanceException(sender.getId());
+				sender.retrieveFromBalance(amount);
+				receiver.addToBalance(amount);
+			} finally {
+				receiver.getLock().unlock();
+			}
+		} finally {
+			sender.getLock().unlock();
+		}
 	}
 	
 	public CryptoAccount getSender() {

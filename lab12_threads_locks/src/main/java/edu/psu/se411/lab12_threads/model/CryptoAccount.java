@@ -1,13 +1,14 @@
 package edu.psu.se411.lab12_threads.model;
 
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import edu.psu.se411.lab12_threads.exceptions.InsufficientBalanceException;
 
-public class CryptoAccount implements comparable<CryptoAccount> {
+public class CryptoAccount implements Comparable<CryptoAccount> {
 	private String id;
 	private Double balance;
-	private Lock lock = new Lock();
+	private final Lock lock = new ReentrantLock();
 
 	public CryptoAccount(String id, Double balance) {
 		if (balance < 0)
@@ -40,8 +41,9 @@ public class CryptoAccount implements comparable<CryptoAccount> {
 		return lock;
 	}
 
-	public int compareTo(Object other) {
-		;
+	@Override
+	public int compareTo(CryptoAccount other) {
+		return id.compareTo(other.getId());
 	}
 
 }

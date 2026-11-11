@@ -31,7 +31,7 @@ public class App {
 		
 		System.out.printf("Initial money volume in system: %f%n%n", sumTotalMoneyInAccounts(accounts));
 		
-		ExecutorService executor = Executors.newFixedThreadPool(nbTransactions);
+		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 		
 		long startTime = System.currentTimeMillis();
 		 
