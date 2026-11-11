@@ -11,12 +11,16 @@ public class CryptoAccount {
 		this.balance = balance;
 	}
 	
-	public void addToBalance(Double amount) {
-		// TODO
+	public synchronized void addToBalance(Double amount) {
+		balance = balance + amount;
 	}
 	
-	public void retrieveFromBalance(Double amount) throws InsufficientBalanceException {
-		// TODO
+	public synchronized void retrieveFromBalance(Double amount) throws InsufficientBalanceException {
+		if (amount > balance) {
+			throw new InsufficientBalanceException("Insufficient balance in account " + id);
+		} else {
+			balance = balance - amount;
+		}
 	}
 	
 	public String getId() {

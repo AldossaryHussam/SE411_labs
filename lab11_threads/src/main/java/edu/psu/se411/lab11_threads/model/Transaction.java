@@ -1,6 +1,7 @@
 package edu.psu.se411.lab11_threads.model;
 
 import edu.psu.se411.lab11_threads.exceptions.InsufficientBalanceException;
+import java.util.UUID;
 
 public class Transaction implements Runnable {
 	private String id;
@@ -18,6 +19,10 @@ public class Transaction implements Runnable {
 		this.amount = amount;
 	}
 
+	public Transaction(CryptoAccount sender, CryptoAccount receiver, Double amount) {
+		this(UUID.randomUUID().toString(), sender, receiver, amount);
+	}
+
 	public void execute() throws InsufficientBalanceException {
 		if (sender.getBalance() >= amount) {
 
@@ -33,35 +38,6 @@ public class Transaction implements Runnable {
 			execute();
 		} catch (InsufficientBalanceException e) {
 			System.err.println("Transaction " + id + " failed: " + e.getMessage());
-		}
-	}
-
-	// create trancations in a seprate thread
-	Thread[] threads = new thread[nbTransactions];for(
-	int i = 0;i<nbTransactions;i++)
-	{
-		crptoAccount sender = accounts[(int) (Math.random() * nbAccounts)];
-		crptoAccount receiver = accounts[(int) (Math.random() * nbAccounts)];
-		if (sender == receiver) {
-			i--;
-			continue;
-		}
-		double amount = Math.random() * 100;
-		transaction transaction = new Transaction("txn_" + i, sender, receiver, amount);
-		Thread thread = new Thread(transaction);
-
-		threads[i] = thread;
-		thread.start();
-
-	}
-
-	for(
-	int i = 0;i<Thread.legth;i++)
-	{
-		try {
-			threads[i].join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 
